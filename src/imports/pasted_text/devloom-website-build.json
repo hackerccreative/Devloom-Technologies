@@ -1,0 +1,221 @@
+You are a senior frontend developer and UI designer. Build a premium, 
+production-ready single-page company website for "Devloom Technologies" 
+— a early-stage software startup that builds developer tools, 
+AI-powered products, and collaborative platforms.
+
+=== TECH STACK ===
+- React + Vite
+- Tailwind CSS
+- Framer Motion (for all animations)
+- React Router (single page, anchor scroll only)
+- Google Fonts via @import
+- NO backend, NO API calls, NO forms that submit anywhere
+
+=== BRAND IDENTITY ===
+Company: Devloom Technologies
+Tagline: "Where ideas become infrastructure."
+Description: "We build software products for builders — tools that 
+eliminate friction, accelerate collaboration, and bring ideas to life faster."
+Colors:
+  - Primary bg: #080B12 (deep space black, slight blue undertone)
+  - Surface: #0D1117
+  - Card bg: #111827
+  - Accent blue: #3B82F6
+  - Accent glow: #2563EB
+  - Text primary: #E8EDF5
+  - Text secondary: #6B7280
+  - Border: #1E2B42
+
+Fonts:
+  - Display/heading: "Syne" (Google Fonts) — geometric, futuristic
+  - Body: "DM Sans" (Google Fonts) — clean, readable
+
+=== LOGO ===
+The company has an SVG logo already. Create a logo component 
+(DevloomLogo.jsx) that renders this SVG inline:
+- The mark: a geometric loom/grid pattern (intersecting lines forming 
+  a tight grid, 4 vertical + 5 horizontal lines) with:
+  - 4 corner dots in #3B82F6
+  - Intersection nodes (3 key ones) as filled blue circles
+  - Hidden </> brackets subtly visible at center in #3B82F6 opacity 0.6
+  - Outer frame: 2 corner dots top, 2 bottom in accent blue
+- The wordmark: "Dev" in font-weight 600 color #FFFFFF + "loom" in 
+  weight 300 color #E8EDF5, font: Syne, size adjustable via props
+- "TECHNOLOGIES" below in letter-spacing: 0.28em, size ~35% of main, 
+  color #3E4E6A
+- Component accepts size prop (sm/md/lg) to scale everything
+- Horizontal layout: mark LEFT, wordmark RIGHT
+
+=== SECTIONS (single page, scroll) ===
+
+── 1. NAVBAR ──
+- Fixed top, blur backdrop (backdrop-filter: blur(12px)), 
+  bg rgba(8,11,18,0.8)
+- Left: DevloomLogo size="sm"
+- Right: nav links — About, Product, Vision, Contact
+  (smooth scroll to sections)
+- Nav links: hover → accent blue underline slides in from left
+- On scroll >50px: thin bottom border appears (border-color: #1E2B42)
+- Mobile: hamburger → slide-down menu
+
+── 2. HERO SECTION ──
+Height: 100vh, centered content
+
+Background: 
+- Deep #080B12 base
+- Subtle dot grid pattern (CSS radial-gradient dots, very faint #1E2B42)
+- 3 large blurred circles (position: absolute, blur 120px):
+    Circle 1: top-right, #2563EB opacity 0.06, size 500px
+    Circle 2: bottom-left, #1E3A5F opacity 0.08, size 400px  
+    Circle 3: center, #3B82F6 opacity 0.03, size 600px
+
+Content (staggered Framer Motion entrance, each 0.15s delay apart):
+- Small pill badge top: "✦ Software for Builders" — border #1E2B42, 
+  bg #0D1117, text #6B7280, tiny dot pulses in blue
+- H1 (72px, Syne, weight 700, line-height 1.1):
+    Line 1: "We build tools"  
+    Line 2: "that builders" (color: #3B82F6)
+    Line 3: "rely on."
+- Subtext (18px, DM Sans, #6B7280, max-width 480px):
+    "Devloom Technologies crafts software products — 
+    from collaborative IDEs to AI-powered workflows — 
+    built with precision, for the people shaping what comes next."
+- Two CTA buttons:
+    Primary: "See Our Work" — solid #3B82F6, hover → slightly lighter, 
+             subtle scale(1.02) on hover
+    Secondary: "Our Vision" — transparent, border #1E2B42, 
+               hover → border #3B82F6, text white
+
+Scroll indicator bottom-center: thin vertical line + "scroll" text, 
+subtle bounce animation
+
+── 3. ABOUT SECTION ──
+id="about", padding 120px vertical
+
+Left col (large, 55%):
+- Section label: "WHO WE ARE" in tiny tracked caps, #3B82F6
+- H2 (52px Syne): "A small team with an obsession for craft."
+- Body text (DM Sans 17px, #9CA3AF, line-height 1.8):
+    "Devloom Technologies is an early-stage software company 
+    built by developers, for developers. We're not chasing trends — 
+    we're solving the problems we've faced ourselves: fragmented tools, 
+    broken collaboration, and the friction between an idea and its execution.
+    
+    We build with precision. We ship with purpose. And we believe the 
+    best software quietly becomes the infrastructure others build on top of."
+
+Right col (45%): 
+- 3 stat cards stacked, each: border-left 2px #3B82F6, 
+  pl-4, bg #111827, rounded-lg, p-5
+  Card 1: "01 / Founded" → "2024 — built from a real problem, not a pitch."
+  Card 2: "02 / Focus" → "Developer tools, AI workflows, collaborative platforms."
+  Card 3: "03 / Philosophy" → "Ship things that last. Build for builders."
+
+Animate: left col slides in from left, right col from right, on scroll 
+(use Framer Motion whileInView)
+
+── 4. PRODUCT SECTION ──
+id="product", padding 120px vertical, bg #0D1117
+
+Section label: "WHAT WE'RE BUILDING"
+H2: "Our flagship product."
+
+Single large product card — full width, max-w-4xl, centered:
+bg: #111827, border: #1E2B42, rounded-2xl, p-10
+Inside:
+  - Top row: product name "CodeSync.ai" (Syne 36px, white) + 
+    status badge "In Development" (small pill, amber color)
+  - Tagline: "Real-time AI-powered collaborative development." 
+    (#9CA3AF, 18px)
+  - Divider line #1E2B42
+  - 4 feature pills in a flex-wrap row:
+    "Monaco Editor" / "Real-time Sync" / "AI Assistant" / "Video Calls"
+    Each pill: bg #0D1117, border #1E2B42, text #6B7280, 
+    hover → border #3B82F6, text white, smooth transition
+  - Description (DM Sans, #6B7280):
+    "A single workspace where developers write, collaborate, 
+    and build with AI — no tab switching, no merge conflicts, 
+    no friction. Just code."
+  - Bottom: "→ codesync.ai" link placeholder styled as subtle text link
+
+Card entrance: scale from 0.95 + fade in on scroll
+
+── 5. VISION SECTION ──
+id="vision", padding 120px vertical
+
+Full-width, centered, max-w-2xl:
+- Section label: "OUR VISION"
+- Large pull quote style (Syne 42px, weight 300, line-height 1.3, 
+  center aligned):
+  "Every important problem left to solve will eventually run on software. 
+  We want to be the team that builds the tools the solvers use."
+- Below: thin line + "— Devloom Technologies, 2024"
+- Subtle background: single large blurred blue circle behind text, 
+  opacity 0.04
+
+Animate: text reveals word by word (Framer Motion, stagger 0.03s per word)
+
+── 6. CONTACT / FOOTER ──
+id="contact", bg #080B12, padding 80px vertical, 
+border-top: 1px solid #1E2B42
+
+Two columns:
+Left:
+  - DevloomLogo size="md"  
+  - "Building something worth using." (#6B7280, mt-3)
+  - Social row (icons only, placeholder hrefs="#"):
+    GitHub icon, LinkedIn icon, Twitter/X icon
+    Each: #3E4E6A, hover → #3B82F6, transition smooth
+
+Right (or centered on mobile):
+  - "Get in touch" label
+  - Email displayed as styled text (not a form):
+    "hello@devloom.tech" — #3B82F6, hover underline
+  - "We're early. We're building. We'd love to hear from you." 
+    (#6B7280, small)
+
+Bottom bar: 
+"© 2024 Devloom Technologies. All rights reserved." centered, 
+#3E4E6A, font-size 12px, border-top #1E2B42 mt-8 pt-6
+
+=== ANIMATIONS SUMMARY ===
+- Hero: staggered entrance (badge → h1 → sub → buttons), 
+  each element fades up (y: 30 → 0, opacity 0 → 1)
+- All sections: whileInView trigger, once: true, viewport: 20% threshold
+- Navbar: framer motion presence for mobile menu
+- Stat cards: stagger 0.1s each on scroll enter
+- Product card: scale + fade
+- Vision quote: word-by-word reveal
+- Hover states: all interactive elements have smooth 200ms transitions
+- Scroll progress bar: thin #3B82F6 line at very top of page 
+  (useScroll + useSpring from framer-motion, scaleX the bar)
+
+=== GLOBAL RULES ===
+- Mobile responsive — all sections stack properly on <768px
+- No placeholder images — use pure CSS shapes, gradients, or SVG only
+- All text is real copy (provided above) — no lorem ipsum anywhere
+- Smooth scroll behavior: html { scroll-behavior: smooth }
+- Page title: "Devloom Technologies — Where ideas become infrastructure"
+- Favicon: use a simple blue circle in index.html (inline SVG favicon)
+- Write ALL files completely: 
+    src/App.jsx
+    src/components/Navbar.jsx
+    src/components/Hero.jsx
+    src/components/About.jsx
+    src/components/Product.jsx
+    src/components/Vision.jsx
+    src/components/Footer.jsx
+    src/components/DevloomLogo.jsx
+    src/index.css (global styles, dot grid, font imports)
+    index.html (title + favicon)
+    tailwind.config.js (extend with brand colors + Syne font)
+
+After all files, give:
+1. Exact install commands
+2. Dev server start command
+3. Test checklist:
+   a. Hero loads with staggered animation
+   b. Navbar blur works on scroll
+   c. All section animations trigger on scroll
+   d. Mobile menu works
+   e. Smooth scroll to sections on nav click
